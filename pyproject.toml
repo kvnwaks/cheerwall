@@ -10,7 +10,6 @@ dependencies = [
     "django-http-compression[brotli]>=1.4.0",
     "django-minify-html>=1.14.0",
     "django-browser-reload>=1.21.0",
-
     # rest framework
     "djangorestframework>=3.18.3",
     "django-filter>=26.2",

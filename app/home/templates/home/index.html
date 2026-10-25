@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DjangX app</title>
+        {# bootstrap #}
+        <link rel="stylesheet"
+              href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+        <script defer src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+        {# bootstrap icons #}
+        <link rel="stylesheet"
+              href="{% static 'bootstrap-icons/bootstrap-icons.min.css' %}">
+    </head>
+    <body>
+        <button type="button" class="theme-accent btn-solid btn-styled">Accent</button>
+        <button type="button" class="theme-primary btn-solid btn-styled">Primary</button>
+        <button type="button" class="btn-solid">
+            <i class="bi bi-house" aria-hidden="true"></i>
+            Home
+        </button>
+    </body>
+</html>

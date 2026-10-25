@@ -50,6 +50,7 @@ INSTALLED_APPS: list[str] = [
     "django_http_compression",
     "rest_framework",
     "app.home",
+    "app.bootstrap",
     "djangx.core",
     "django.contrib.admin",
     "django.contrib.auth",

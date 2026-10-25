@@ -1,0 +1,56 @@
+{% extends "wishes/base.html" %}
+
+{% block content %}
+    <h1 class="headline text-center mb-4">You've got this{% if student %}, {{ student }}{% endif %}! 🌟</h1>
+    {% if wishes %}
+        <div id="wishes"
+             class="carousel slide"
+             data-bs-ride="carousel"
+             data-bs-interval="7000"
+             data-bs-touch="true">
+            <div class="carousel-inner">
+                {% for wish in wishes %}
+                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                        <div class="wish-card mx-auto">
+                            <p class="wish-message mb-0">{{ wish.message|linebreaksbr }}</p>
+                            <p class="wish-from">
+                                {{ wish.name }}{% if wish.relationship %} <small>· {{ wish.relationship }}</small>{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+                <button class="btn btn-warm rounded-pill px-4"
+                        type="button"
+                        data-bs-target="#wishes"
+                        data-bs-slide="prev">← Back</button>
+                <span id="counter" class="fw-bold">1 / {{ wishes|length }}</span>
+                <button class="btn btn-warm rounded-pill px-4"
+                        type="button"
+                        data-bs-target="#wishes"
+                        data-bs-slide="next">Next →</button>
+            </div>
+        </div>
+    {% else %}
+        <div class="wish-card mx-auto">
+            <p class="wish-message mb-0">The first wishes are on their way...</p>
+        </div>
+    {% endif %}
+    <p class="text-center mt-5">
+        <a class="btn btn-outline-secondary rounded-pill" href="{% url 'add' %}">Add your own wish</a>
+    </p>
+{% endblock %}
+
+{% block scripts %}
+    {% if wishes %}
+        <script nonce="{{ csp_nonce }}">
+            const carousel = document.getElementById("wishes");
+            const counter = document.getElementById("counter");
+            const total = {{ wishes|length }};
+            carousel.addEventListener("slid.bs.carousel", (event) => {
+                counter.textContent = `${event.to + 1} / ${total}`;
+            });
+        </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "wishes/base.html" %}
+
+{% block title %}Send a wish{% endblock %}
+
+{% block content %}
+    <h1 class="headline text-center mb-2">Send a wish{% if student %} to {{ student }}{% endif %} 💌</h1>
+    <p class="text-center mb-4">Your message goes straight onto {% if student %}{{ student }}'s{% else %}their{% endif %} page. Keep it short and sweet!</p>
+    <form method="post"
+          class="form-card mx-auto bg-white rounded-4 shadow-sm p-4"
+          novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label fw-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.name == "message" %}
+                    <div class="form-text"><span id="remaining">300</span> characters left</div>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-warm rounded-pill w-100 py-2">Send my wish</button>
+    </form>
+    <p class="text-center mt-4">
+        <a href="{% url 'carousel' %}">See the wishes so far</a>
+    </p>
+{% endblock %}
+
+{% block scripts %}
+    <script nonce="{{ csp_nonce }}">
+        const message = document.getElementById("id_message");
+        const remaining = document.getElementById("remaining");
+        const update = () => {
+            remaining.textContent = 300 - message.value.length;
+        };
+        message.setAttribute("maxlength", 300);
+        message.addEventListener("input", update);
+        update();
+    </script>
+{% endblock %}

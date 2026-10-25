@@ -49,7 +49,7 @@ INSTALLED_APPS: list[str] = [
     "django_minify_html",
     "django_http_compression",
     "rest_framework",
-    "app.home",
+    "app.wishes",
     "app.bootstrap",
     "djangx.core",
     "django.contrib.admin",
@@ -211,3 +211,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }
+
+# Wishes
+
+STUDENT_NAME: str = getenv("STUDENT_NAME", "")

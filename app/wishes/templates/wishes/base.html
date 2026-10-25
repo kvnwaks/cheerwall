@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}You've got this!{% endblock %}</title>
+        <link rel="stylesheet"
+              href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;700&display=swap"
+              rel="stylesheet">
+        <style nonce="{{ csp_nonce }}">
+            body {
+                font-family: "Nunito", system-ui, sans-serif;
+                min-height: 100vh;
+                background: linear-gradient(160deg, #fff3dc 0%, #ffd9c7 100%);
+                color: #4a2f27;
+            }
+
+            .headline {
+                font-family: "Caveat", cursive;
+                font-weight: 700;
+                font-size: clamp(2.2rem, 7vw, 3.6rem);
+                color: #c2410c;
+            }
+
+            .wish-card {
+                background: #fff;
+                border-radius: 1.5rem;
+                box-shadow: 0 10px 30px rgba(194, 65, 12, .15);
+                max-width: 640px;
+                min-height: 300px;
+                padding: 2rem 1.75rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .wish-message {
+                font-family: "Caveat", cursive;
+                font-weight: 500;
+                font-size: clamp(1.7rem, 5.5vw, 2.4rem);
+                line-height: 1.25;
+                overflow-wrap: anywhere;
+            }
+
+            .wish-from {
+                font-weight: 700;
+                color: #c2410c;
+                margin: 1rem 0 0;
+            }
+
+            .wish-from small {
+                color: #9a6b5b;
+                font-weight: 400;
+            }
+
+            .btn-warm {
+                background: #ea580c;
+                border-color: #ea580c;
+                color: #fff;
+            }
+
+            .btn-warm:hover {
+                background: #c2410c;
+                border-color: #c2410c;
+                color: #fff;
+            }
+
+            .form-card {
+                max-width: 560px;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container py-4 py-md-5">
+            {% block content %}{% endblock %}
+        </main>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "wishes/base.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block content %}
+    <div class="wish-card mx-auto">
+        <h1 class="headline">Thank you! 🎉</h1>
+        <p class="mb-4">Your wish is now on the page{% if student %} for {{ student }}{% endif %}.</p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <a class="btn btn-warm rounded-pill px-4" href="{% url 'carousel' %}">See the wishes</a>
+            <a class="btn btn-outline-secondary rounded-pill px-4"
+               href="{% url 'add' %}">Add another</a>
+        </div>
+    </div>
+{% endblock %}
